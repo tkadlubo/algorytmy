@@ -1,7 +1,7 @@
 #include <vector>
 #include <cstdint>
 
-#define INFINITY 2000000000
+#define INFINITY INT32_MAX
 
 struct Vertex;
 
