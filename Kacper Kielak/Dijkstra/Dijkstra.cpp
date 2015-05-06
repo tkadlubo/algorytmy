@@ -1,7 +1,7 @@
 #include "Dijkstra.h"
 #include <iostream>
 
-Dijkstra::Dijkstra(std::vector<Vertice>& _vertices, int _verticesNumber, int _start) :
+Dijkstra::Dijkstra(std::vector<Vertex>& _vertices, int _verticesNumber, int _start) :
     verticesNumber(_verticesNumber),
     uncheckedVertices(_vertices),
     start(_start),
@@ -23,21 +23,21 @@ void Dijkstra::writeTravelCost(int finish)
 void Dijkstra::countTravelCosts()
 {
     while(!isEnd())
-        checkClosestVertice();
+        checkClosestVertex();
 
     return;
 }
 
-void Dijkstra::checkClosestVertice()
+void Dijkstra::checkClosestVertex()
 {
-    Vertice& closestVertice = getClosestVertice();
+    Vertex& closestVertex = getClosestVertex();
 
-    for(size_t i=0; i<closestVertice.neighbors.size(); i++)
+    for(size_t i=0; i<closestVertex.neighbours.size(); i++)
     {
-        Vertice& tempVertice = closestVertice.neighbors[i].neighbor;
-        if(tempVertice.travelCost > closestVertice.travelCost + closestVertice.neighbors[i].travelCost)
+        Vertex& tempVertex = closestVertex.neighbours[i].neighbour;
+        if(tempVertex.travelCost > closestVertex.travelCost + closestVertex.neighbours[i].travelCost)
         {
-            tempVertice.travelCost = closestVertice.travelCost + closestVertice.neighbors[i].travelCost;
+            tempVertex.travelCost = closestVertex.travelCost + closestVertex.neighbours[i].travelCost;
         }
 
     }
@@ -52,19 +52,19 @@ bool Dijkstra::isEnd()
     return numberOfCheckedVertices == verticesNumber;
 }
 
-Vertice& Dijkstra::getClosestVertice()
+Vertex& Dijkstra::getClosestVertex()
 {
     int minTravelCost = INFINITY;
-    int closestVertice;
+    int closestVertex;
     for(int i=0; i<verticesNumber; i++)
     {
         if(uncheckedVertices[i].travelCost<minTravelCost)
         {
             minTravelCost = uncheckedVertices[i].travelCost;
-            closestVertice = i;
+            closestVertex = i;
         }
     }
-    return uncheckedVertices[closestVertice];
+    return uncheckedVertices[closestVertex];
 }
 
 Dijkstra::~Dijkstra()

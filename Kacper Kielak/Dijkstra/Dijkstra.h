@@ -8,18 +8,18 @@
 class Dijkstra
 {
    public:
-        Dijkstra(std::vector<Vertice>& _vertices, int _verticesNumber, int _start);
+        Dijkstra(std::vector<Vertex>& _vertices, int _verticesNumber, int _start);
         void writeTravelCost(int finish);
         ~Dijkstra();
     private:
         int verticesNumber;
-        std::vector<Vertice>& uncheckedVertices;
+        std::vector<Vertex>& uncheckedVertices;
         int start;
         int numberOfCheckedVertices;
         void countTravelCosts();
-        void checkClosestVertice();
+        void checkClosestVertex();
         bool isEnd();
-        Vertice& getClosestVertice();
+        Vertex& getClosestVertex();
 
 };
 

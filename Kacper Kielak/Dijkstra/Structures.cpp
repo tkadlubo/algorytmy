@@ -1,28 +1,29 @@
 #include <vector>
+#include <cstdint>
 
 #define INFINITY 2000000000
 
-struct Vertice;
+struct Vertex;
 
-struct Neighbor
+struct Neighbour
 {
-    Neighbor(Vertice& _neighbor, int _travelCost) :
-        neighbor(_neighbor),
+    Neighbour(Vertex& _neighbour, int _travelCost) :
+        neighbour(_neighbour),
         travelCost(_travelCost)
     {}
-    Vertice& neighbor;
+    Vertex& neighbour;
     int travelCost;
 };
 
-struct Vertice
+struct Vertex
 {
-    std::vector<Neighbor> neighbors;
+    std::vector<Neighbour> neighbours;
     int travelCost;//=INFINITY
 
     void reset()
     {
         this->travelCost = INFINITY;
-        this->neighbors.clear();
+        this->neighbours.clear();
     }
 
     bool isVisited() const

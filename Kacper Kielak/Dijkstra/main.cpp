@@ -2,9 +2,9 @@
 #include <iostream>
 
 
-std::vector<Vertice> initializeVertices(int verticesNumber, int edgesNumber)
+std::vector<Vertex> initializeVertices(int verticesNumber, int edgesNumber)
 {
-    std::vector<Vertice> vertices;
+    std::vector<Vertex> vertices;
     vertices.resize(verticesNumber);
 
     for(int i=0; i<verticesNumber; i++)
@@ -12,13 +12,13 @@ std::vector<Vertice> initializeVertices(int verticesNumber, int edgesNumber)
 
     for(int i=0; i<edgesNumber; i++)
     {
-        int travelCost, vertice1, vertice2;
-        std::cin >> vertice1 >> vertice2 >> travelCost;
-        Neighbor tempNeighbor1(vertices[vertice2 - 1], travelCost);
-        Neighbor tempNeighbor2(vertices[vertice1 - 1], travelCost);
+        int travelCost, vertex1, vertex2;
+        std::cin >> vertex1 >> vertex2 >> travelCost;
+        Neighbour tempNeighbour1(vertices[vertex2 - 1], travelCost);
+        Neighbour tempNeighbour2(vertices[vertex1 - 1], travelCost);
 
-        vertices[vertice1-1].neighbors.push_back(tempNeighbor1);
-        vertices[vertice2-1].neighbors.push_back(tempNeighbor2);
+        vertices[vertex1-1].neighbours.push_back(tempNeighbour1);
+        vertices[vertex2-1].neighbours.push_back(tempNeighbour2);
     }
     return std::move(vertices);
 }
@@ -33,7 +33,7 @@ int main()
     {
         std::cin >> verticesNumber >> edgesNumber;
 
-        std::vector<Vertice> vertices = initializeVertices(verticesNumber, edgesNumber);
+        std::vector<Vertex> vertices = initializeVertices(verticesNumber, edgesNumber);
 
         std::cin >> start >> finish;
         start--; //
