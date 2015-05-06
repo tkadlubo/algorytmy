@@ -35,7 +35,7 @@ void Dijkstra::checkClosestVertice()
     for(size_t i=0; i<closestVertice.neighbors.size(); i++)
     {
         Vertice& tempVertice = closestVertice.neighbors[i].neighbor;
-        if(!tempVertice.isVisited() && tempVertice.travelCost > closestVertice.travelCost + closestVertice.neighbors[i].travelCost)
+        if(tempVertice.travelCost > closestVertice.travelCost + closestVertice.neighbors[i].travelCost)
         {
             tempVertice.travelCost = closestVertice.travelCost + closestVertice.neighbors[i].travelCost;
         }
@@ -55,7 +55,7 @@ bool Dijkstra::isEnd()
 Vertice& Dijkstra::getClosestVertice()
 {
     int minTravelCost = INFINITY;
-    int closestVertice = UNDEFINED;
+    int closestVertice;
     for(int i=0; i<verticesNumber; i++)
     {
         if(uncheckedVertices[i].travelCost<minTravelCost)
