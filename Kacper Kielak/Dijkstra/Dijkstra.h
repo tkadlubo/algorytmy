@@ -13,14 +13,13 @@ class Dijkstra
         ~Dijkstra();
     private:
         int verticesNumber;
-        std::vector<Vertice> checkedVertices;
         std::vector<Vertice>& uncheckedVertices;
         int start;
         int numberOfCheckedVertices;
         void countTravelCosts();
         void checkClosestVertice();
         bool isEnd();
-        int getOrdinalOfClosestVertice();
+        Vertice& getClosestVertice();
 
 };
 

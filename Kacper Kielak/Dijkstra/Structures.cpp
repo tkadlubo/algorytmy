@@ -3,10 +3,15 @@
 #define UNDEFINED -1
 #define INFINITY 2000000000
 
+struct Vertice;
 
 struct Neighbor
 {
-    int ordinal;
+    Neighbor(Vertice& _neighbor, int _travelCost) :
+        neighbor(_neighbor),
+        travelCost(_travelCost)
+    {}
+    Vertice& neighbor;
     int travelCost;
 };
 
@@ -23,13 +28,8 @@ struct Vertice
         this->neighbors.clear();
     }
 
-    bool isReseted() const
+    bool isVisited() const
     {
-        if (this->pathToStart == UNDEFINED &&
-        this->travelCost == INFINITY &&
-        this->neighbors.empty())
-            return true;
-
-        return false;
+        return this->travelCost != INFINITY;
     }
 };

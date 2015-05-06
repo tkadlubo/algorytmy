@@ -12,13 +12,10 @@ std::vector<Vertice> initializeVertices(int verticesNumber, int edgesNumber)
 
     for(int i=0; i<edgesNumber; i++)
     {
-        Neighbor tempNeighbor1, tempNeighbor2;
         int travelCost, vertice1, vertice2;
         std::cin >> vertice1 >> vertice2 >> travelCost;
-        tempNeighbor1.ordinal = vertice2-1;
-        tempNeighbor2.ordinal = vertice1-1;
-        tempNeighbor1.travelCost = travelCost;
-        tempNeighbor2.travelCost = travelCost;
+        Neighbor tempNeighbor1(vertices[vertice2 - 1], travelCost);
+        Neighbor tempNeighbor2(vertices[vertice1 - 1], travelCost);
 
         vertices[vertice1-1].neighbors.push_back(tempNeighbor1);
         vertices[vertice2-1].neighbors.push_back(tempNeighbor2);

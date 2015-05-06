@@ -7,14 +7,13 @@ Dijkstra::Dijkstra(std::vector<Vertice>& _vertices, int _verticesNumber, int _st
     start(_start),
     numberOfCheckedVertices(0)
 {
-    checkedVertices.resize(verticesNumber);
     countTravelCosts();
 }
 
 void Dijkstra::writeTravelCost(int finish)
 {
-    if(uncheckedVertices[finish].isReseted())
-        std::cout << checkedVertices[finish].travelCost << std::endl;
+    if(uncheckedVertices[finish].isVisited())
+        std::cout << uncheckedVertices[finish].travelCost << std::endl;
     else
         std::cout << "NO" << std::endl;
 
@@ -31,23 +30,18 @@ void Dijkstra::countTravelCosts()
 
 void Dijkstra::checkClosestVertice()
 {
-    int ordinalOfClosestVertice = getOrdinalOfClosestVertice();
-    Vertice closestVertice = uncheckedVertices[ordinalOfClosestVertice];
+    Vertice& closestVertice = getClosestVertice();
 
     for(size_t i=0; i<closestVertice.neighbors.size(); i++)
     {
-        Vertice tempVertice = uncheckedVertices[closestVertice.neighbors[i].ordinal];
-        if(!tempVertice.isReseted() && tempVertice.travelCost > closestVertice.travelCost + closestVertice.neighbors[i].travelCost)
+        Vertice& tempVertice = closestVertice.neighbors[i].neighbor;
+        if(!tempVertice.isVisited() && tempVertice.travelCost > closestVertice.travelCost + closestVertice.neighbors[i].travelCost)
         {
-            tempVertice.pathToStart = ordinalOfClosestVertice;
             tempVertice.travelCost = closestVertice.travelCost + closestVertice.neighbors[i].travelCost;
         }
 
-        uncheckedVertices[closestVertice.neighbors[i].ordinal] = tempVertice;
     }
 
-    checkedVertices[ordinalOfClosestVertice] = closestVertice;
-    uncheckedVertices[ordinalOfClosestVertice].reset();
     numberOfCheckedVertices++;
 
     return;
@@ -55,13 +49,10 @@ void Dijkstra::checkClosestVertice()
 
 bool Dijkstra::isEnd()
 {
-    if(numberOfCheckedVertices<verticesNumber)
-        return false;
-
-    return true;
+    return numberOfCheckedVertices == verticesNumber;
 }
 
-int Dijkstra::getOrdinalOfClosestVertice()
+Vertice& Dijkstra::getClosestVertice()
 {
     int minTravelCost = INFINITY;
     int closestVertice = UNDEFINED;
@@ -73,7 +64,7 @@ int Dijkstra::getOrdinalOfClosestVertice()
             closestVertice = i;
         }
     }
-    return closestVertice;
+    return uncheckedVertices[closestVertice];
 }
 
 Dijkstra::~Dijkstra()
