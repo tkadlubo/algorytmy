@@ -27,14 +27,14 @@ int main()
 {
     int testsNumber;
     std::cin >> testsNumber;
-    int verticesNumber, edgesNumber;
-    int start, finish;
     for(int i=0; i<testsNumber; i++)
     {
+        int verticesNumber, edgesNumber;
         std::cin >> verticesNumber >> edgesNumber;
 
         std::vector<Vertex> vertices = initializeVertices(verticesNumber, edgesNumber);
 
+        int start, finish;
         std::cin >> start >> finish;
         start--; //
         finish--;// coumputer counts from 0, not from 1
