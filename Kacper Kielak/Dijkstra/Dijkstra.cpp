@@ -41,7 +41,7 @@ void Dijkstra::checkClosestVertex()
         }
 
     }
-
+    closestVertex.visited = true;
     numberOfCheckedVertices++;
 
     return;
@@ -58,12 +58,16 @@ Vertex& Dijkstra::getClosestVertex()
     int closestVertex;
     for(int i=0; i<verticesNumber; i++)
     {
+        if(uncheckedVertices[i].isVisited())
+            continue;
+
         if(uncheckedVertices[i].travelCost<minTravelCost)
         {
             minTravelCost = uncheckedVertices[i].travelCost;
             closestVertex = i;
         }
     }
+    std::cout << closestVertex;
     return uncheckedVertices[closestVertex];
 }
 

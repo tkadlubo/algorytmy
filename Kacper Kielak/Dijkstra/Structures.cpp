@@ -19,15 +19,17 @@ struct Vertex
 {
     std::vector<Neighbour> neighbours;
     int travelCost;//=INFINITY
+    bool visited;
 
     void reset()
     {
-        this->travelCost = INFINITY;
-        this->neighbours.clear();
+        travelCost = INFINITY;
+        neighbours.clear();
+        visited = false;
     }
 
     bool isVisited() const
     {
-        return this->travelCost != INFINITY;
+        return visited;
     }
 };
