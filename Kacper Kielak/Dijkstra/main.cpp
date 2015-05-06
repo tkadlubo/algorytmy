@@ -1,4 +1,4 @@
-#include "Dijkstra.cpp"
+#include "Dijkstra.h"
 #include <iostream>
 
 
