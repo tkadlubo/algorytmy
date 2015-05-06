@@ -34,7 +34,7 @@ void Dijkstra::checkClosestVertice()
     int ordinalOfClosestVertice = getOrdinalOfClosestVertice();
     Vertice closestVertice = uncheckedVertices[ordinalOfClosestVertice];
 
-    for(int i=0; i<closestVertice.neighbors.size(); i++)
+    for(size_t i=0; i<closestVertice.neighbors.size(); i++)
     {
         Vertice tempVertice = uncheckedVertices[closestVertice.neighbors[i].ordinal];
         if(!tempVertice.isReseted() && tempVertice.travelCost > closestVertice.travelCost + closestVertice.neighbors[i].travelCost)
