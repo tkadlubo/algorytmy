@@ -1,18 +1,20 @@
 #ifndef DIJKSTRA_H
 #define DIJKSTRA_H
 
+#include <vector>
+
 #include "Structures.cpp"
 
 class Dijkstra
 {
    public:
-        Dijkstra(Vertice* vertices, int verticesNumber, int start);
+        Dijkstra(std::vector<Vertice>& _vertices, int _verticesNumber, int _start);
         void writeTravelCost(int finish);
         ~Dijkstra();
     private:
         int verticesNumber;
-        Vertice* checkedVertices;
-        Vertice* uncheckedVertices;
+        std::vector<Vertice> checkedVertices;
+        std::vector<Vertice>& uncheckedVertices;
         int start;
         int numberOfCheckedVertices;
         void countTravelCosts();

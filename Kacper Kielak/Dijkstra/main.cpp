@@ -2,9 +2,11 @@
 #include <iostream>
 
 
-Vertice* initializeVertices(int verticesNumber, int edgesNumber)
+std::vector<Vertice> initializeVertices(int verticesNumber, int edgesNumber)
 {
-    Vertice *vertices = new Vertice[verticesNumber];
+    std::vector<Vertice> vertices;
+    vertices.resize(verticesNumber);
+
     for(int i=0; i<verticesNumber; i++)
         vertices[i].reset();
 
@@ -21,7 +23,7 @@ Vertice* initializeVertices(int verticesNumber, int edgesNumber)
         vertices[vertice1-1].neighbors.push_back(tempNeighbor1);
         vertices[vertice2-1].neighbors.push_back(tempNeighbor2);
     }
-    return vertices;
+    return std::move(vertices);
 }
 
 int main()
@@ -29,19 +31,20 @@ int main()
     int testsNumber;
     std::cin >> testsNumber;
     int verticesNumber, edgesNumber;
-    Vertice* vertices;
     int start, finish;
     for(int i=0; i<testsNumber; i++)
     {
         std::cin >> verticesNumber >> edgesNumber;
-        vertices = initializeVertices(verticesNumber, edgesNumber);
+
+        std::vector<Vertice> vertices = initializeVertices(verticesNumber, edgesNumber);
+
         std::cin >> start >> finish;
         start--; //
         finish--;// coumputer counts from 0, not from 1
         vertices[start].travelCost = 0;
+
         Dijkstra dijkstra(vertices, verticesNumber, start);
         dijkstra.writeTravelCost(finish);
     }
-    delete vertices;
     return 0;
 }

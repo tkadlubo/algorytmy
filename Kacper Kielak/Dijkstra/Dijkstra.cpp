@@ -1,13 +1,13 @@
 #include "Dijkstra.h"
 #include <iostream>
 
-Dijkstra::Dijkstra(Vertice* vertices, int verticesNumber, int start)
+Dijkstra::Dijkstra(std::vector<Vertice>& _vertices, int _verticesNumber, int _start) :
+    verticesNumber(_verticesNumber),
+    uncheckedVertices(_vertices),
+    start(_start),
+    numberOfCheckedVertices(0)
 {
-    this->uncheckedVertices = vertices;
-    this->checkedVertices = new Vertice[verticesNumber];
-    this->verticesNumber = verticesNumber;
-    this->start = start;
-    this->numberOfCheckedVertices = 0;
+    checkedVertices.resize(verticesNumber);
     countTravelCosts();
 }
 
@@ -78,6 +78,4 @@ int Dijkstra::getOrdinalOfClosestVertice()
 
 Dijkstra::~Dijkstra()
 {
-    delete checkedVertices;
-    delete uncheckedVertices;
 }

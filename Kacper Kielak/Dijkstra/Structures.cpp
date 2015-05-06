@@ -23,7 +23,7 @@ struct Vertice
         this->neighbors.clear();
     }
 
-    bool isReseted()
+    bool isReseted() const
     {
         if (this->pathToStart == UNDEFINED &&
         this->travelCost == INFINITY &&
