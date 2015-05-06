@@ -7,9 +7,6 @@ std::vector<Vertex> initializeVertices(int verticesNumber, int edgesNumber)
     std::vector<Vertex> vertices;
     vertices.resize(verticesNumber);
 
-    for(int i=0; i<verticesNumber; i++)
-        vertices[i].reset();
-
     for(int i=0; i<edgesNumber; i++)
     {
         int travelCost, vertex1, vertex2;

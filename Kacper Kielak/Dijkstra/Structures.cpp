@@ -21,12 +21,10 @@ struct Vertex
     int travelCost;//=INFINITY
     bool visited;
 
-    void reset()
-    {
-        travelCost = INFINITY;
-        neighbours.clear();
-        visited = false;
-    }
+    Vertex() :
+        travelCost(INFINITY),
+        visited(false);
+    {}
 
     bool isVisited() const
     {

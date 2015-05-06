@@ -67,7 +67,6 @@ Vertex& Dijkstra::getClosestVertex()
             closestVertex = i;
         }
     }
-    std::cout << closestVertex;
     return uncheckedVertices[closestVertex];
 }
 
